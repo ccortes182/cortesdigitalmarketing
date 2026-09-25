@@ -1,7 +1,7 @@
-/* Adapted from Refractive-site docs/css/layout.css, components.css, animations.css @ 01c2934.
+/* Adapted from the shared brand repo (docs/css/layout.css, components.css, animations.css) @ 01c2934.
    Trimmed to the pieces this site uses (container, section, nav, hero type, buttons,
    service cards, pills, footer, reveal states). Not auto-synced — compare by hand
-   when Refractive's components change. Tokens come from variables.css. */
+   when the brand components change. Tokens come from variables.css. */
 
 /* ── Brand Wordmark ── */
 .brand-name {

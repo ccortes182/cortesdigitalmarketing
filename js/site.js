@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Site motion — trimmed from Refractive-site docs/js/animations.js and
+   Site motion — trimmed from the brand repo docs/js/animations.js and
    brand-cards.js @ 01c2934 (hero letters, scroll reveals, stagger, card glow)
    ========================================================================== */
 

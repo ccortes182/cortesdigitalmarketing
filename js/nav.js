@@ -1,4 +1,4 @@
-/* Source: Refractive-site docs/js/nav.js @ 01c2934 — do not edit here; run scripts/sync-brand.sh */
+/* Source: brand repo docs/js/nav.js @ 01c2934 — do not edit here; run scripts/sync-brand.sh */
 /* ==========================================================================
    Navigation — Scroll behavior + Mobile hamburger
    ========================================================================== */
