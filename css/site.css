@@ -117,6 +117,17 @@ section[id] {
   margin-bottom: var(--space-sm);
 }
 
+/* Hidden until the brand font loads (js/site.js); CSS fallback reveals it
+   after 2.5s if JavaScript never runs. */
+#hero-headline {
+  visibility: hidden;
+  animation: reveal-headline 0s 2.5s forwards;
+}
+
+@keyframes reveal-headline {
+  to { visibility: visible; }
+}
+
 .hero__headline .word {
   display: inline-block;
   white-space: nowrap;

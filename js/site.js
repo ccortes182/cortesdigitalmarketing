@@ -101,9 +101,25 @@ function initStaggerAnimations() {
   });
 }
 
+// Resolve once the brand font is ready (or after a short cap) so the hero
+// headline never renders in the wider fallback font and then re-wraps.
+function brandFontReady(timeout = 1500) {
+  if (!document.fonts || !document.fonts.load) return Promise.resolve();
+  return Promise.race([
+    document.fonts.load('600 1em "adelphi-pe-variable"'),
+    new Promise(resolve => setTimeout(resolve, timeout))
+  ]).catch(() => {});
+}
+
+function showHeadline() {
+  const headline = document.getElementById('hero-headline');
+  if (headline) headline.style.visibility = 'visible';
+}
+
 function initAnimations() {
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
     revealAll();
+    showHeadline();
     return;
   }
   gsap.registerPlugin(ScrollTrigger);
@@ -111,12 +127,16 @@ function initAnimations() {
 
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     revealAll();
+    brandFontReady().then(showHeadline);
     return;
   }
 
-  animateHeroHeadline();
   initScrollAnimations();
   initStaggerAnimations();
+  brandFontReady().then(() => {
+    animateHeroHeadline();
+    showHeadline();
+  });
 }
 
 function initSite() {
