@@ -617,6 +617,46 @@ html:not(.gsap-ready) .hero__headline .char {
   }
 }
 
+/* Phones: size the hero to the photo, not the viewport, so the framing is the
+   same on every phone. Headline sits above the hair line (~37% of the photo);
+   supporting copy starts at mid-chest (~66%). CTAs may fall below the fold. */
+@media (max-width: 767px) and (orientation: portrait) {
+  .cdm-hero {
+    --photo-h: max(1000px, 256vw);
+    display: block;
+    min-height: 0;
+    padding: calc(var(--photo-h) * 0.66) 0 var(--space-lg);
+  }
+
+  .cdm-hero__bg,
+  .cdm-hero__bg img {
+    bottom: auto;
+    height: var(--photo-h);
+  }
+
+  .cdm-hero__upper {
+    position: absolute;
+    top: calc(var(--space-xl) + 2.5rem);
+    left: var(--gutter);
+    right: var(--gutter);
+  }
+
+  .cdm-hero__inner,
+  .cdm-hero__copy {
+    position: static;
+    display: block;
+  }
+
+  .cdm-hero__upper,
+  .cdm-hero__lower {
+    z-index: 1;
+  }
+
+  .cdm-hero__lower {
+    position: relative;
+  }
+}
+
 @media (max-width: 479px) {
   .cdm-logo__sub {
     display: none;
