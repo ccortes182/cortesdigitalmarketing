@@ -41,6 +41,13 @@ section[id] {
   font-size: 1.3rem;
 }
 
+/* Desktop glass pill: roomier bar (~55px vs 36px) */
+@media (min-width: 1024px) {
+  .nav--scrolled {
+    padding: 1rem 0;
+  }
+}
+
 /* Agency link — prism mark + gradient underline */
 .nav__link--agency {
   display: inline-flex;
