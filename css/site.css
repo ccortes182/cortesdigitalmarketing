@@ -15,30 +15,20 @@ section[id] {
   scroll-margin-top: 90px;
 }
 
-/* ── CDM wordmark ── */
+/* ── Name mark (nav) ── */
 .cdm-logo {
   display: inline-flex;
-  align-items: baseline;
-  gap: 0.55rem;
+  align-items: center;
   line-height: 1;
   white-space: nowrap;
 }
 
 .cdm-logo__name {
-  font-size: 1.45rem;
-}
-
-.cdm-logo__sub {
   font-family: var(--font-display);
-  font-size: 0.62rem;
+  font-size: 1rem;
   font-weight: var(--font-weight-semibold);
-  letter-spacing: 0.32em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--color-text-secondary);
-}
-
-.nav--scrolled .cdm-logo__name {
-  font-size: 1.3rem;
 }
 
 /* Desktop glass pill: roomier bar (~55px vs 36px) */
@@ -435,17 +425,20 @@ html:not(.gsap-ready) .hero__headline .char {
   break-inside: avoid;
 }
 
+/* ── Footer signature ── */
+.footer__signature {
+  width: min(220px, 60%);
+  height: auto;
+  margin-bottom: 1.25rem;
+  filter: invert(1);
+  opacity: 0.9;
+}
+
 /* ── CTA ── */
 .cta {
   text-align: center;
 }
 
-.cta__signature {
-  width: min(320px, 70%);
-  margin: 0 auto var(--space-md);
-  filter: invert(1);
-  opacity: 0.9;
-}
 
 .cta p {
   font-size: var(--text-lg);
@@ -686,11 +679,6 @@ html:not(.gsap-ready) .hero__headline .char {
   }
 }
 
-@media (max-width: 479px) {
-  .cdm-logo__sub {
-    display: none;
-  }
-}
 
 .work-card:hover .work-card__cta {
   color: var(--color-text-primary);
