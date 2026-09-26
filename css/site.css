@@ -70,30 +70,46 @@ section[id] {
 .cdm-hero {
   position: relative;
   min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   align-items: center;
   padding: calc(var(--space-2xl) + 1rem) 0 var(--space-xl);
   overflow: hidden;
+  background-color: #0d0e14;
 }
 
-.cdm-hero::before {
+/* Full-bleed photo; desktop and tall variants swap via <picture> */
+.cdm-hero__bg,
+.cdm-hero__bg img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.cdm-hero__bg img {
+  object-fit: cover;
+  object-position: 72% 30%;
+}
+
+/* Legibility scrim on the text side + fade into the page below */
+.cdm-hero::after {
   content: '';
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(60% 55% at 78% 45%, rgba(67, 169, 223, 0.16), transparent 70%),
-    radial-gradient(45% 45% at 88% 70%, rgba(142, 104, 173, 0.18), transparent 70%);
-  -webkit-mask-image: linear-gradient(180deg, black 60%, transparent);
-  mask-image: linear-gradient(180deg, black 60%, transparent);
+    linear-gradient(90deg, rgba(13, 14, 20, 0.82) 0%, rgba(13, 14, 20, 0.55) 38%, rgba(13, 14, 20, 0) 62%),
+    linear-gradient(180deg, rgba(33, 36, 41, 0) 72%, var(--color-bg-primary) 100%);
   pointer-events: none;
 }
 
-.cdm-hero__grid {
+.cdm-hero__inner {
   position: relative;
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  align-items: center;
-  gap: var(--space-lg);
+  z-index: 1;
+}
+
+.cdm-hero__copy {
+  max-width: min(620px, 50%);
 }
 
 .cdm-hero .hero__headline {
@@ -152,6 +168,7 @@ html:not(.gsap-ready) .hero__headline .char {
 
 .avatar-stack {
   display: flex;
+  flex-shrink: 0;
 }
 
 .avatar-stack img {
@@ -164,37 +181,6 @@ html:not(.gsap-ready) .hero__headline .char {
 
 .avatar-stack img + img {
   margin-left: -12px;
-}
-
-.cdm-hero__portrait {
-  position: relative;
-  justify-self: end;
-  width: min(100%, 460px);
-}
-
-/* Framed portrait card: gradient hairline border + soft brand glow behind */
-.cdm-hero__portrait::before {
-  content: '';
-  position: absolute;
-  inset: -8%;
-  background:
-    radial-gradient(closest-side at 30% 45%, rgba(142, 104, 173, 0.28), transparent),
-    radial-gradient(closest-side at 72% 55%, rgba(67, 169, 223, 0.26), transparent);
-  filter: blur(20px);
-  pointer-events: none;
-}
-
-.cdm-hero__portrait-frame {
-  position: relative;
-  padding: 1px;
-  border-radius: var(--radius-lg);
-  background: var(--color-accent-gradient-text);
-  box-shadow: 0 30px 60px rgba(6, 10, 18, 0.45);
-}
-
-.cdm-hero__portrait img {
-  width: 100%;
-  border-radius: calc(var(--radius-lg) - 1px);
 }
 
 /* ── Intro ── */
@@ -591,20 +577,6 @@ html:not(.gsap-ready) .hero__headline .char {
 }
 
 @media (max-width: 767px) {
-  .cdm-hero {
-    min-height: auto;
-    padding-top: calc(var(--space-xl) + 3rem);
-  }
-
-  .cdm-hero__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .cdm-hero__portrait {
-    justify-self: center;
-    width: min(62%, 270px);
-    order: -1;
-  }
 
   .work-grid,
   .work-grid--two,
@@ -619,6 +591,49 @@ html:not(.gsap-ready) .hero__headline .char {
   .agency-band {
     grid-template-columns: 1fr;
     padding: var(--space-md);
+  }
+}
+
+/* Mid-size landscape screens: push the subject right, clear of the copy */
+@media (max-width: 1279px) and (orientation: landscape) {
+  .cdm-hero__bg img {
+    object-position: 38% 30%;
+  }
+}
+
+/* Tall photo (phones, portrait tablets): headline in the empty space up top,
+   supporting copy at the bottom over the torso, face left clear between. */
+@media (max-width: 1023px) and (orientation: portrait) {
+  .cdm-hero {
+    align-items: stretch;
+    padding: calc(var(--space-xl) + 2.5rem) 0 var(--space-lg);
+  }
+
+  .cdm-hero__bg img {
+    object-position: 50% 50%;
+  }
+
+  .cdm-hero::after {
+    background:
+      linear-gradient(180deg, rgba(13, 14, 20, 0.7) 0%, rgba(13, 14, 20, 0.25) 30%, rgba(13, 14, 20, 0) 44%),
+      linear-gradient(0deg, var(--color-bg-primary) 0%, rgba(33, 36, 41, 0.92) 24%, rgba(33, 36, 41, 0.55) 40%, rgba(33, 36, 41, 0) 54%);
+  }
+
+  .cdm-hero__inner,
+  .cdm-hero__copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: none;
+  }
+
+  .cdm-hero__copy {
+    flex: 1;
+    gap: var(--space-xl);
+  }
+
+  .cdm-hero__lower .hero__subhead {
+    color: var(--color-text-primary);
   }
 }
 

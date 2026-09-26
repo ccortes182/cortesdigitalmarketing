@@ -47,10 +47,18 @@ function animateHeroHeadline() {
     ease: 'power3.out',
     delay: 0.2
   });
+  // Rest of the hero copy fades in on load (not on scroll) so the CTA is always shown
+  const heroItems = document.querySelectorAll('.cdm-hero [data-animate]');
+  if (heroItems.length) {
+    gsap.fromTo(heroItems,
+      { opacity: 0, y: 30 },
+      { opacity: 1, y: 0, duration: 0.8, stagger: 0.12, delay: 0.7, ease: 'power2.out' }
+    );
+  }
 }
 
 function initScrollAnimations() {
-  document.querySelectorAll('[data-animate]').forEach(el => {
+  document.querySelectorAll('[data-animate]:not(.cdm-hero [data-animate])').forEach(el => {
     const type = el.getAttribute('data-animate');
     const fromVars = { opacity: 0 };
     if (type === 'fade-up') fromVars.y = 40;
