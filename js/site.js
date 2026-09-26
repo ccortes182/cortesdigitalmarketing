@@ -30,13 +30,23 @@ function animateHeroHeadline() {
   const headline = document.getElementById('hero-headline');
   if (!headline) return;
 
-  const parts = headline.innerHTML.split(/(<br\s*\/?>)/gi);
-  headline.innerHTML = parts.map(part => {
-    if (/<br\s*\/?>/i.test(part)) return part;
-    return part.split(' ').map(word =>
-      `<span class="word">${word.split('').map(c => `<span class="char">${c}</span>`).join('')}</span>`
-    ).join(' ');
-  }).join('');
+  // Split plain text (not innerHTML) so entities like &amp; stay one character
+  const text = headline.textContent.trim();
+  headline.setAttribute('aria-label', text);
+  headline.textContent = '';
+  text.split(/\s+/).forEach((word, i) => {
+    if (i) headline.append(' ');
+    const w = document.createElement('span');
+    w.className = 'word';
+    w.setAttribute('aria-hidden', 'true');
+    [...word].forEach(c => {
+      const ch = document.createElement('span');
+      ch.className = 'char';
+      ch.textContent = c;
+      w.append(ch);
+    });
+    headline.append(w);
+  });
 
   gsap.to(headline.querySelectorAll('.char'), {
     opacity: 1,
