@@ -657,6 +657,17 @@ html:not(.gsap-ready) .hero__headline .char {
   }
 }
 
+/* Standard-width phones: tighten headroom above the subject by 40px */
+@media (min-width: 375px) and (max-width: 767px) and (orientation: portrait) {
+  .cdm-hero {
+    padding-top: calc(var(--photo-h) * 0.66 - 40px);
+  }
+
+  .cdm-hero__bg {
+    top: -40px;
+  }
+}
+
 @media (max-width: 479px) {
   .cdm-logo__sub {
     display: none;
