@@ -657,14 +657,14 @@ html:not(.gsap-ready) .hero__headline .char {
   }
 }
 
-/* Standard-width phones: tighten headroom above the subject by 40px */
+/* Standard-width phones: tighten headroom above the subject by 74px */
 @media (min-width: 375px) and (max-width: 767px) and (orientation: portrait) {
   .cdm-hero {
-    padding-top: calc(var(--photo-h) * 0.66 - 40px);
+    padding-top: calc(var(--photo-h) * 0.66 - 74px);
   }
 
   .cdm-hero__bg {
-    top: -40px;
+    top: -74px;
   }
 }
 
