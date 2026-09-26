@@ -172,26 +172,29 @@ html:not(.gsap-ready) .hero__headline .char {
   width: min(100%, 460px);
 }
 
-/* The photo has its own dark studio backdrop. A dark pool behind it (matched to
-   that backdrop) plus a feathered mask dissolves the frame edge into the page. */
+/* Framed portrait card: gradient hairline border + soft brand glow behind */
 .cdm-hero__portrait::before {
   content: '';
   position: absolute;
-  inset: -12% -18%;
+  inset: -8%;
   background:
-    radial-gradient(closest-side, rgba(13, 14, 20, 0.9) 40%, rgba(13, 14, 20, 0.5) 70%, transparent),
-    radial-gradient(closest-side at 28% 42%, rgba(142, 104, 173, 0.22), transparent),
-    radial-gradient(closest-side at 74% 44%, rgba(67, 169, 223, 0.2), transparent);
+    radial-gradient(closest-side at 30% 45%, rgba(142, 104, 173, 0.28), transparent),
+    radial-gradient(closest-side at 72% 55%, rgba(67, 169, 223, 0.26), transparent);
+  filter: blur(20px);
   pointer-events: none;
 }
 
-.cdm-hero__portrait img {
+.cdm-hero__portrait-frame {
   position: relative;
+  padding: 1px;
+  border-radius: var(--radius-lg);
+  background: var(--color-accent-gradient-text);
+  box-shadow: 0 30px 60px rgba(6, 10, 18, 0.45);
+}
+
+.cdm-hero__portrait img {
   width: 100%;
-  -webkit-mask-image:
-    radial-gradient(ellipse 50% 50% at 50% 46%, black 58%, transparent 100%);
-  mask-image:
-    radial-gradient(ellipse 50% 50% at 50% 46%, black 58%, transparent 100%);
+  border-radius: calc(var(--radius-lg) - 1px);
 }
 
 /* ── Intro ── */
