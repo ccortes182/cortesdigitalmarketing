@@ -172,24 +172,26 @@ html:not(.gsap-ready) .hero__headline .char {
   width: min(100%, 460px);
 }
 
+/* The photo has its own dark studio backdrop. A dark pool behind it (matched to
+   that backdrop) plus a feathered mask dissolves the frame edge into the page. */
 .cdm-hero__portrait::before {
   content: '';
   position: absolute;
-  left: 8%;
-  right: 8%;
-  bottom: 0;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: var(--color-accent-gradient-full);
-  opacity: 0.85;
-  filter: saturate(0.9);
+  inset: -12% -18%;
+  background:
+    radial-gradient(closest-side, rgba(13, 14, 20, 0.9) 40%, rgba(13, 14, 20, 0.5) 70%, transparent),
+    radial-gradient(closest-side at 28% 42%, rgba(142, 104, 173, 0.22), transparent),
+    radial-gradient(closest-side at 74% 44%, rgba(67, 169, 223, 0.2), transparent);
+  pointer-events: none;
 }
 
 .cdm-hero__portrait img {
   position: relative;
   width: 100%;
-  -webkit-mask-image: linear-gradient(180deg, black 82%, transparent);
-  mask-image: linear-gradient(180deg, black 82%, transparent);
+  -webkit-mask-image:
+    radial-gradient(ellipse 50% 50% at 50% 46%, black 58%, transparent 100%);
+  mask-image:
+    radial-gradient(ellipse 50% 50% at 50% 46%, black 58%, transparent 100%);
 }
 
 /* ── Intro ── */
