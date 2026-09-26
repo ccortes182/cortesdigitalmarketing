@@ -18,3 +18,5 @@ copy css/base.css      css/brand/base.css
 copy js/nav.js         js/nav.js
 cp "$src/docs/images/REFRACTIVE.svg" "$here/images/prism-mark.svg"
 echo "synced images/REFRACTIVE.svg -> images/prism-mark.svg"
+cp "$src/docs/images/REFRACTIVE-DIGITAL.svg" "$here/images/refractive-wordmark.svg"
+echo "synced images/REFRACTIVE-DIGITAL.svg -> images/refractive-wordmark.svg"

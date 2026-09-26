@@ -400,6 +400,12 @@ html:not(.gsap-ready) .hero__headline .char {
   height: auto;
 }
 
+.agency-band__wordmark {
+  height: clamp(14px, 1.3vw, 18px);
+  width: auto;
+  margin: 0.35rem 0 var(--space-sm);
+}
+
 .agency-band h2 {
   font-size: var(--text-xl);
   line-height: var(--leading-snug);
